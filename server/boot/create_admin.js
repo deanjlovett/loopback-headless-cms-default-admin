@@ -1,25 +1,25 @@
 'use strict';
 
 module.exports = function(app) {
-  var User = app.models.user;
+  var Client = app.models.Client;
  
-  const findOrCreateUser =
-    User.findOne({'where': {'email': process.env.ADMIN_EMAIL}})
-      .then(user => {
-        console.log('inside findOrCreateUser');
-        if (!user) {
-          console.log('defaualt user not found, create defualt:');
+  const findOrCreateClient =
+    Client.findOne({'where': {'email': process.env.ADMIN_EMAIL}})
+      .then(myClient => {
+        console.log('inside findOrCreateClient');
+        if (!myClient) {
+          console.log('defaualt client not found, create defualt:');
           console.log('   ADMIN_EMAIL:', process.env.ADMIN_EMAIL);
-          console.log('ADMIN_PASSWORD:', process.env.ADMIN_EMAIL);
+          console.log('ADMIN_PASSWORD:', process.env.ADMIN_PASSWORD);
 
-          return User.create({
+          return Client.create({
             email: process.env.ADMIN_EMAIL,
-            password: process.env.ADMIN_EMAIL,
+            password: process.env.ADMIN_PASSWORD,
           })
         } else { 
-          console.log('found user:');
-          console.log(user);
-          return user; 
+          console.log('found client:');
+          console.log(myClient);
+          return myClient; 
         } 
       })
       .catch(err => {
@@ -36,7 +36,7 @@ module.exports = function(app) {
   // })
 
     
-  Promise.all([findOrCreateUser])
+  Promise.all([findOrCreateClient])
     .then(response => {
       console.log('in my Promise.all');
     })

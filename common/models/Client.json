@@ -1,5 +1,5 @@
 {
-  "name": "user",
+  "name": "Client",
   "base": "PersistedModel",
   "idInjection": true,
   "options": {
@@ -15,13 +15,9 @@
       "required": true
     },
     "role": {
-      "type": "string",
+      "type": "string", 
       "required": true,
-      "default": "user"
-    },
-    "creationDate": {
-      "type": "date",
-      "required": true
+      "default": "user"  
     }
   },
   "validations": [],
